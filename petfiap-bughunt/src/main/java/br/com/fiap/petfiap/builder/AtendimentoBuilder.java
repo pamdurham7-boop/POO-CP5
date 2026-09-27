@@ -21,7 +21,7 @@ public class AtendimentoBuilder {
     }
 
     public AtendimentoBuilder comPet(String petNome, String petPorte) {
-        this.petNome = petNome;
+        petNome = petNome;
         this.petPorte = petPorte;
         return this;
     }
