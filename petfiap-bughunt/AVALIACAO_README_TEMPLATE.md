@@ -43,6 +43,7 @@
 | bug11 | Um atendimento concluído pode ser cancelado. | `Atendimento.java`, método `cancelar` altera o status sem verificar o estado atual. | Permitir cancelamento somente quando o status for `AGENDADO`; caso contrário, lançar `StatusInvalidoException`. | Máquina de estados; exceções de domínio |
 | bug12 | Um atendimento já cancelado pode ser cancelado novamente. | `Atendimento.java`, método `cancelar` também aceita o status `CANCELADO`. | Aplicar a mesma validação: somente atendimentos `AGENDADO` podem ser cancelados. | Regras de transição de status; encapsulamento |
 
+|---|---|---|---|---|
 | bug01 | `c04e17e` | `commit 'petnome' para 'this.petnome' no método 'comPet' dentro da classe 'AtendimentoBuilder'` | O nome informado para o pet não aparece no atendimento criado. | `AtendimentoBuilder.java`, método `comPet`: o parâmetro era atribuído a si mesmo, sem `this.petNome`. | Alterar para `this.petNome = petNome`. | Padrão Builder; escopo de atributos e parâmetros |
 | bug02 | `444c46a` | `commit correcao de bug em classe 'AtendimentoCriar', método 'criar', case'TOSA'` | Ao solicitar uma TOSA, a Factory devolvia um objeto `Banho`. | O caso `"TOSA"` criava `new Banho(...)`. | Retornar `new Tosa(...)`. | Padrão Factory; polimorfismo |
 | bug03 | `e4a3b81` | `commit correcao de bug em classe 'ConsultaVeterinaria' em método construtor` | A consulta criada não mantinha protocolo, pet, porte, tutor ou data. | O construtor chamava `super()` sem parâmetros. | Encaminhar os parâmetros para o construtor da classe pai. | Herança; reutilização de construtor |
