@@ -32,11 +32,10 @@ public class Tosa extends Atendimento {
         return 120.0;
     }
 
-    @Override
     public int calcularPontosFidelidade() {
         return 30;
     }
-
+    @Override
     public int getDuracaoMinutos(String porte) {
         return 60;
     }
