@@ -20,11 +20,13 @@ public class AgendaService {
     public Atendimento agendar(Atendimento novo) {
         List<Atendimento> doPet = repository.findByPetNome(novo.getPetNome());
         for (Atendimento a : doPet) {
-            if (a.getPetNome() == novo.getPetNome() && a.getDataHora() == novo.getDataHora()
-                    && "AGENDADO".equals(a.getStatus())) {
-                throw new HorarioOcupadoException(
-                        "Pet " + novo.getPetNome() + " ja possui atendimento agendado nesse horario");
-            }
+            if (java.util.Objects.equals(a.getPetNome(), novo.getPetNome())
+        && java.util.Objects.equals(a.getDataHora(), novo.getDataHora())
+        && "AGENDADO".equals(a.getStatus())) {
+    throw new HorarioOcupadoException(
+            "Pet " + novo.getPetNome()
+                    + " ja possui atendimento agendado nesse horario");
+}
         }
         Atendimento salvo = repository.save(novo);
         System.out.println("Recibo: atendimento " + salvo.getProtocolo()
