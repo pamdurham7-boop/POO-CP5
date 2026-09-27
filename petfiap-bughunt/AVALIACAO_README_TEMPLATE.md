@@ -30,18 +30,18 @@
 
 | # | Sintoma observado (o que fiz/vi) | Causa raiz (arquivo e linha aproximada) | Correção aplicada | Conceito da disciplina |
 |---|---|---|---|---|
-| bug01 | | | | |
-| bug02 | | | | |
-| bug03 | | | | |
-| bug04 | | | | |
-| bug05 | | | | |
-| bug06 | | | | |
-| bug07 | | | | |
-| bug08 | | | | |
-| bug09 | | | | |
-| bug10 | | | | |
-| bug11 | | | | |
-| bug12 | | | | |
+| bug01 | O nome informado para o pet não aparece no atendimento criado. | `AtendimentoBuilder.java`, método `comPet`: o parâmetro era atribuído a si mesmo, sem `this.petNome`. | Alterar para `this.petNome = petNome`. | Padrão Builder; escopo de atributos e parâmetros |
+| bug02 | O Builder aceita a criação de atendimento sem nome do pet. | `AtendimentoBuilder.java`, método `construir`: não valida `petNome`. | Validar nome nulo ou vazio e lançar `IllegalArgumentException`. | Validação; objeto válido |
+| bug03 | O Builder aceita a criação de atendimento sem porte do pet. | `AtendimentoBuilder.java`, método `construir`: não valida `petPorte`. | Validar porte nulo ou vazio e lançar `IllegalArgumentException`. | Validação; encapsulamento |
+| bug04 | Ao solicitar uma TOSA, a Factory devolve um objeto `Banho`. | `AtendimentoFactory.java`, caso `"TOSA"` retorna `new Banho(...)`. | Retornar `new Tosa(...)`. | Padrão Factory; polimorfismo |
+| bug05 | A consulta criada não mantém protocolo, pet, porte, tutor ou data. | `ConsultaVeterinaria.java`, construtor chama `super()` sem parâmetros. | Encaminhar todos os parâmetros para `super(protocolo, petNome, petPorte, tutorNome, dataHora)`. | Herança; reutilização de construtor |
+| bug06 | A duração da Tosa continua sendo 30 minutos. | `Tosa.java`, método declarado como `getDuracaoMinutos(String porte)`, criando sobrecarga em vez de sobrescrita. | Alterar para `getDuracaoMinutos()` e usar `@Override`. | Sobrescrita versus sobrecarga; polimorfismo |
+| bug07 | O Singleton cria objetos diferentes e reinicia a numeração. | `GeradorProtocolo.java`, `getInstancia()` retorna `new GeradorProtocolo()` sem atribuir a `instancia`. | Atribuir a nova instância ao campo estático antes de retorná-la. | Padrão Singleton |
+| bug08 | Um atendimento no mesmo horário pode ser agendado novamente para o mesmo pet. | `AgendaService.java`, comparação de nome e data usa `==`. | Usar comparação por valor, como `Objects.equals(...)`. | Igualdade de objetos; `equals` |
+| bug09 | Buscar um atendimento inexistente retorna `null` em vez de lançar a exceção prevista. | `AgendaService.java`, captura genérica transforma a exceção em `null`. | Remover o `catch` genérico e propagar `AtendimentoNaoEncontradoException`. | Exceções; tratamento de erros |
+| bug10 | É possível agendar atendimento com data e hora no passado. | `AgendaService.java`, método `agendar` não valida `dataHora`. | Validar a data antes de consultar o repository e lançar `IllegalArgumentException`. | Regra de negócio; validação |
+| bug11 | Um atendimento concluído pode ser cancelado. | `Atendimento.java`, método `cancelar` altera o status sem verificar o estado atual. | Permitir cancelamento somente quando o status for `AGENDADO`; caso contrário, lançar `StatusInvalidoException`. | Máquina de estados; exceções de domínio |
+| bug12 | Um atendimento já cancelado pode ser cancelado novamente. | `Atendimento.java`, método `cancelar` também aceita o status `CANCELADO`. | Aplicar a mesma validação: somente atendimentos `AGENDADO` podem ser cancelados. | Regras de transição de status; encapsulamento |
 
 ## Parte 2 — Ajustes de Clean Code
 
