@@ -1,7 +1,9 @@
 package br.com.fiap.petfiap.model;
 
 import br.com.fiap.petfiap.exception.StatusInvalidoException;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
@@ -61,14 +63,14 @@ public abstract class Atendimento {
 
     // Cancela o atendimento
     public void cancelar() {
-    if (!"AGENDADO".equals(status)) {
-        throw new StatusInvalidoException(
-                "Atendimento " + protocolo
-                        + " nao pode ser cancelado: status " + status);
-    }
+        if (!"AGENDADO".equals(status)) {
+            throw new StatusInvalidoException(
+                    "Atendimento " + protocolo
+                            + " nao pode ser cancelado: status " + status);
+        }
 
-    status = "CANCELADO";
-}
+        status = "CANCELADO";
+    }
 
     // Getters e Setters
     public Long getId() { return id; }
