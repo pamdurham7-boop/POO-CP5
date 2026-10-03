@@ -166,14 +166,3 @@ O caso do banho mostra que todos os testes antigos podem passar e ainda faltar u
 A meta deve ser confiança nas regras e nos efeitos observáveis; atingir 100% de linhas, sozinho, não comprova correção.
 
 ## Parte 5 — Espaço livre (opcional)
-
-### Estado da entrega e limites da verificação
-
-- O repositório existente [POO-CP5](https://github.com/pamdurham7-boop/POO-CP5) já é público; sua visibilidade foi conferida pela API do GitHub.
-- O nome atual difere do formato `cp5-bughunt-greenav` pedido no enunciado. Renomeação e entrega do link no Teams continuam pendentes.
-- As mensagens e a divisão dos commits anteriores foram preservadas. O primeiro commit já tinha a atribuição do nome no Builder corrigida; `0cb90c8` registrou a reversão logo depois. O histórico não foi reescrito.
-- Há dois bugs de transição documentados no template anterior com a mesma correção; aqui, o cancelamento ocupa uma única linha por causa raiz, permitindo registrar o preço do banho que ainda faltava.
-- Os commits desta etapa foram separados por correção, teste e ajuste de Clean Code, com mensagens `fix:`, `test:`, `refactor:` e `docs:`. Os hashes estão registrados nas tabelas; a documentação tem seu próprio commit.
-- O `application.properties`, o `pom.xml`, os testes originais, o template e o `GeradorProtocolo.java` permanecem intactos.
-- O ID continua com `@Id`, sem geração automática ou atribuição no fluxo de agendamento. A gravação JPA desse fluxo não foi validada nem corrigida, por orientação expressa para manter o ID.
-- Os testes unitários não validam a subida da API, o Oracle, a persistência real ou concorrência no gerador de protocolos. A execução da API é opcional no enunciado e não foi usada como evidência de aprovação da suíte.
